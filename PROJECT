@@ -1,0 +1,15 @@
+domain: elasticweb.dct.com
+layout:
+- go.kubebuilder.io/v3
+projectName: elasticweb-operator
+repo: elasticweb-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: elasticweb.dct.com
+  kind: ElasticWeb
+  path: elasticweb-operator/api/v1
+  version: v1
+version: "3"
