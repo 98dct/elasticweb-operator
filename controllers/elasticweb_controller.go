@@ -46,9 +46,9 @@ const (
 	// 单个POD的CPU资源上限
 	CPU_LIMIT = "100m"
 	// 单个POD的内存资源申请
-	MEM_REQUEST = "512Mi"
+	MEM_REQUEST = "200Mi"
 	// 单个POD的内存资源上限
-	MEM_LIMIT = "512Mi"
+	MEM_LIMIT = "200Mi"
 )
 
 var logger *zap.Logger
@@ -97,7 +97,7 @@ func (r *ElasticWebReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 	_ = log.FromContext(ctx)
 
 	// TODO(user): your logic here
-	logger.Sugar().Infof("elasticweb:%s\n", req.NamespacedName)
+	logger.Sugar().Infof("elasticweb:%s", req.NamespacedName)
 
 	logger.Sugar().Infof("1. start reconcile logic")
 
@@ -112,7 +112,7 @@ func (r *ElasticWebReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 		return ctrl.Result{}, err
 	}
 
-	logger.Sugar().Infof("instance: %s\n", instance.String())
+	logger.Sugar().Infof("instance: %s", instance.String())
 
 	//查找deployment
 	deployment := &appsv1.Deployment{}
@@ -154,7 +154,7 @@ func (r *ElasticWebReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 
 	realReplicas := *deployment.Spec.Replicas
 
-	logger.Sugar().Infof("expectReplicas [%d], realReplicas [%d]\n", expectedReplicas, realReplicas)
+	logger.Sugar().Infof("expectReplicas [%d], realReplicas [%d]", expectedReplicas, realReplicas)
 
 	if expectedReplicas == realReplicas {
 		return ctrl.Result{}, nil
